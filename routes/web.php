@@ -28,6 +28,9 @@ Route::group(['prefix' => 'admin'],function(){
         // Categories
 
         Route::get('category',[CategoryController::class,'index'])->name('admin.category');
+        Route::post('category/create',[CategoryController::class,'create_category'])->name('admin.category.add');
+        Route::post('category/update/{id}',[CategoryController::class,'update_category'])->name('admin.category.edit');
+        Route::post('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
         
     });
 });
