@@ -3,6 +3,9 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,9 +31,22 @@ Route::group(['prefix' => 'admin'],function(){
         // Categories
 
         Route::get('category',[CategoryController::class,'index'])->name('admin.category');
+        Route::get('category-form',[CategoryController::class,'category_form'])->name('admin.category.form');
         Route::post('category/create',[CategoryController::class,'create_category'])->name('admin.category.add');
         Route::post('category/update/{id}',[CategoryController::class,'update_category'])->name('admin.category.edit');
-        Route::post('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
+        Route::get('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
+
+        Route::get('getSlug',function(Request $request){
+            $slug = '';
+            if(!empty($request->title)){
+                $slug = Str::slug($request->title);
+            }
+            return Response::json([
+                'success' => true,
+                'slug' => $slug
+            ]);
+            die;
+        })->name('admin.getSlug');
         
     });
 });

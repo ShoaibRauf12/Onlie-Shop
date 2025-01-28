@@ -3,13 +3,12 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <a class="nav-link @yield('dashbord')" href="{{ route('admin.dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-
-                <a class="nav-link" href="{{ route('admin.category') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <a class="nav-link @yield('category')" href="{{ route('admin.category') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-list "></i></div>
                     Category
                 </a>
                 
