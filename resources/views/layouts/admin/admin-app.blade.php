@@ -10,6 +10,7 @@
         <title>@yield('title')</title>
         <link href="{{asset('admin_assets/css/styles.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('admin_assets/css/all.min.css')}}">
+        <link rel="stylesheet" href="{{asset('admin_assets/css/dropzone.css')}}">
     </head>
     <body class="sb-nav-fixed">
         @include('layouts.admin.header')
@@ -24,6 +25,7 @@
         </div>
         <script src="{{asset('admin_assets/js/jquery.js')}}"></script>
         <script src="{{asset('admin_assets/js/bootstrap.bundle.min.js')}}" ></script>
+        <script src="{{asset('admin_assets/js/dropzone-min.js')}}" ></script>
         <script src="{{asset('admin_assets/js/scripts.js')}}"></script>
         <script>
             $.ajaxSetup({

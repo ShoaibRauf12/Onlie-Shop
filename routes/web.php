@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('category',[CategoryController::class,'index'])->name('admin.category');
         Route::get('category-form',[CategoryController::class,'category_form'])->name('admin.category.form');
         Route::post('category/create',[CategoryController::class,'create_category'])->name('admin.category.add');
+        Route::get('category-edit/{id}',[CategoryController::class,'category_edit'])->name('admin.category-edit-form');
         Route::post('category/update/{id}',[CategoryController::class,'update_category'])->name('admin.category.edit');
         Route::get('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
 
