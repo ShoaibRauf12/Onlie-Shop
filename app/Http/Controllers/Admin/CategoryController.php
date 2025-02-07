@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\TempImage;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class CategoryController extends Controller
 {
@@ -37,7 +41,35 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
+            $category->save();
+
+            //// Imge save 
+            if(!empty($request->image_id)){
+                $tempImage = TempImage::findOrFail($request->image_id);
+                $file_ext = explode('.',$tempImage->name);
+                $ext = $file_ext[1];
+
+                $newFileName = $category->id.'.'. $ext;
+                $spath = public_path(). '/admin_assets/images/temp_path/'.$tempImage->name;
+                $dpath = public_path(). '/admin_assets/images/category_images/'.$newFileName;
+
+                if(File::exists($spath)){
+                    
+                    File::copy($spath,$dpath);
+                }
+
+                /////////// Generate Image Thumbnail
+                $dpath = public_path(). '/admin_assets/images/category_images/thumb/'.$newFileName;
+                $image_resize = ImageManager::imagick()->read($spath);
+                $image_resize->resize(300,400,function ($constraint) {
+                    $constraint->aspectRatio(); 
+                    $constraint->upsize();
+                });
+                $image_resize->save($dpath);
+            }
+            $category->image = $newFileName;
             $result = $category->save();
+
             if($result){
                 session()->flash('success','Created Successfully.');
                 return Response::json(['status'=>true,'message'=>'Created Successfully.','redirect_url'=> route('admin.category')]);
