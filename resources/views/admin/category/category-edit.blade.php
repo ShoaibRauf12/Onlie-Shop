@@ -15,7 +15,7 @@
                     <a href="{{route('admin.category')}}" class="btn btn-primary btn-sm float-end">Back</a>
                 </div>
 
-                <form action="{{ route('admin.category.edit',$category->id) }}" method="post">
+                <form action="" id="edit-category-form">
                     <div class="card-body">
                         @csrf
                         <div class="form-group mb-3">
@@ -43,6 +43,20 @@
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
+                        <!-- Image Upload via Dropzone -->
+                        <div class="fom-group mb-3">
+                            <label for="image" class="image">Image</label>
+                            <input type="hidden" name="image_id" id="image_id">
+                            <div id="image" class="dropzone dz-clickable">
+                                <div class="dz-message needsclick">    
+                                    <br>Drop files here or click to upload.<br><br>                                            
+                                </div>
+                            </div>
+                            <div class=" mt-1">
+                                <img class="img-fluid img-thumbnail" style="width:100px;height:100px;" src="{{ asset('admin_assets/images/category_images/thumb/'.$category->image) }}" alt="">
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="card-footer">
                         <div class="form-group">
@@ -57,3 +71,52 @@
 </div>
 
 @endsection
+@push('script')
+
+<script>
+    $(document).ready(function(e){
+     formSubmit('#edit-category-form', "{{route('admin.category.edit',$category->id) }}", 'POST',);
+
+        $('#name').on('change', function() {
+            var slug = $(this);
+            $.ajax({
+                url: '{{ route("admin.getSlug") }}',
+                type: 'get',
+                data: {
+                    title: slug.val()
+                },
+                dataType: 'json',
+                success: function(response) {
+
+                    if (response.success == true) {
+                        $('#slug').val(response.slug);
+                    }
+                }
+            });
+        });
+
+        Dropzone.autoDiscover = false;    
+        const dropzone = $("#image").dropzone({ 
+            init: function() {
+                this.on('addedfile', function(file) {
+                    if (this.files.length > 1) {
+                        this.removeFile(this.files[0]);
+                    }
+                });
+            },
+            url:  "{{ route('admin.category.image.upload') }}",
+            maxFiles: 1,
+            paramName: 'image',
+            addRemoveLinks: true,
+            acceptedFiles: "image/jpeg,image/png,image/gif",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }, success: function(file, response){
+                $("#image_id").val(response.image_id);
+                //console.log(response)
+            }
+        });
+    });
+</script>
+    
+@endpush

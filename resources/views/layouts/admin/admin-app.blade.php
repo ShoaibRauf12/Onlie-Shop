@@ -27,6 +27,7 @@
         <script src="{{asset('admin_assets/js/bootstrap.bundle.min.js')}}" ></script>
         <script src="{{asset('admin_assets/js/dropzone-min.js')}}" ></script>
         <script src="{{asset('admin_assets/js/scripts.js')}}"></script>
+        <script src="{{ asset('admin_assets/js/formSubmit.js')}}"></script>
         <script>
             $.ajaxSetup({
                 headers: {

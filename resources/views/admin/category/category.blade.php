@@ -52,7 +52,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.category-edit-form',$category->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="{{route('admin.category.delete',$category->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                    <a data-id="{{$category->id}}" class="btn btn-danger btn-sm category-btn-delete">Delete</a>
                                 </td>
                             </tr>
 
@@ -73,3 +73,30 @@
 
 
 @endsection
+
+@push('script')
+<script>
+    $(document).ready(function(e) {
+        $('.category-btn-delete').click(function() {
+            var id = $(this).data('id');
+
+            var url = "{{ route('admin.category.delete', 'ID') }}";
+            var newUrl = url.replace('ID',id);
+            
+            if (confirm("Are you sure you want to delete this record.")) {
+                $.ajax({
+                    url: newUrl ,
+                    type: 'delete',
+                    success:function(response){
+                        if (response['status'] == true) {
+                            window.location.href = response['redirect_url'];
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+</script>
+
+@endpush

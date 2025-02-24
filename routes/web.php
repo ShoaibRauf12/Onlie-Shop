@@ -37,7 +37,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('category-edit/{id}',[CategoryController::class,'category_edit'])->name('admin.category-edit-form');
         Route::post('category/update/{id}',[CategoryController::class,'update_category'])->name('admin.category.edit');
         Route::post('category-image-upload',[TempImageController::class,'category_image_upload'])->name('admin.category.image.upload');
-        Route::get('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
+        Route::delete('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
 
         Route::get('getSlug',function(Request $request){
             $slug = '';
