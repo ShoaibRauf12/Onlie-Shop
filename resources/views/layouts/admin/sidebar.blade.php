@@ -11,7 +11,10 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-list "></i></div>
                     Category
                 </a>
-                
+                <a class="nav-link @yield('sub_category')" href="{{ route('admin.sub-category') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-list "></i></div>
+                    Sub Category
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">

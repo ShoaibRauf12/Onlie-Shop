@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TempImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -38,6 +39,13 @@ Route::group(['prefix' => 'admin'],function(){
         Route::post('category/update/{id}',[CategoryController::class,'update_category'])->name('admin.category.edit');
         Route::post('category-image-upload',[TempImageController::class,'category_image_upload'])->name('admin.category.image.upload');
         Route::delete('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
+
+        // Sub Categories
+
+        Route::get('sub-category',[SubCategoryController::class,'index'])->name('admin.sub-category');
+        Route::get('subcategory-form',[SubCategoryController::class,'sub_category_form'])->name('admin.sub-category.form');
+        Route::post('sub-category/create',[SubCategoryController::class,'create_sub_category'])->name('admin.sub-category.add');
+
 
         Route::get('getSlug',function(Request $request){
             $slug = '';
