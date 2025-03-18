@@ -3,9 +3,6 @@
 @section('category','active')
 @section('content')
 
-@php
-    $data = "Hello wold";
-@endphp
 <div class="container-fluid px-4">
     <h1 class="mt-4">Create Category</h1>
     <ol class="breadcrumb mb-4">
