@@ -30,6 +30,7 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Category Name</th>
                                 <th>Name</th>
                                 <th>Slug</th>
                                 <th>Status</th>
@@ -37,11 +38,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @if ($sub_categories)
+                                @foreach ($sub_categories as $sub_category)
+                                    <tr>
+                                        <td>{{$sub_category->id}}</td>
+                                        <td>{{$sub_category->category->name}}</td>
+                                        <td>{{$sub_category->name}}</td>
+                                        <td>{{$sub_category->slug}}</td>
+                                        <td>
+                                            @if($sub_category->status == 1)
+                                            <i class="fa-regular fa-circle-check text-success"></i>
+                                            @else
+                                            <i class="fa-regular fa-circle-xmark text-danger"></i>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.sub-category-edit-form',$sub_category->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                            <a data-id="{{$sub_category->id}}" class="btn btn-danger btn-sm sub-category-btn-delete">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            @endif
                         </tbody>
                     </table>
                 </div>
-               
+                @if (!empty($sub_categories) && $sub_categories->total() > 5)
+                    <div class="card-footer">
+                        {{ $sub_categories->links() }}
+                    </div>
+                @endif 
             </div>
         </div>
     </div>
@@ -53,17 +79,17 @@
 @push('script')
 <script>
     $(document).ready(function(e) {
-        $('.category-btn-delete').click(function() {
+        $('.sub-category-btn-delete').click(function() {
             var id = $(this).data('id');
 
-            var url = "{{ route('admin.category.delete', 'ID') }}";
-            var newUrl = url.replace('ID',id);
-            
+            var url = "{{ route('admin.sub-category.delete', 'ID') }}";
+            var newUrl = url.replace('ID', id);
+
             if (confirm("Are you sure you want to delete this record.")) {
                 $.ajax({
-                    url: newUrl ,
+                    url: newUrl,
                     type: 'delete',
-                    success:function(response){
+                    success: function(response) {
                         if (response['status'] == true) {
                             window.location.href = response['redirect_url'];
                         }

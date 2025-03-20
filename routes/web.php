@@ -41,10 +41,12 @@ Route::group(['prefix' => 'admin'],function(){
         Route::delete('category/delete/{id}',[CategoryController::class,'delete_category'])->name('admin.category.delete');
 
         // Sub Categories
-
         Route::get('sub-category',[SubCategoryController::class,'index'])->name('admin.sub-category');
         Route::get('subcategory-form',[SubCategoryController::class,'sub_category_form'])->name('admin.sub-category.form');
         Route::post('sub-category/create',[SubCategoryController::class,'create_sub_category'])->name('admin.sub-category.add');
+        Route::get('sub-category-edit/{id}',[SubCategoryController::class,'sub_category_edit'])->name('admin.sub-category-edit-form');
+        Route::post('sub-category/update/{id}',[SubCategoryController::class,'update_sub_category'])->name('admin.sub-category.update');
+        Route::delete('sub-category/delete/{id}',[SubCategoryController::class,'delete_sub_category'])->name('admin.sub-category.delete');
 
 
         Route::get('getSlug',function(Request $request){
