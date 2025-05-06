@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\TempImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -47,6 +48,15 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('sub-category-edit/{id}',[SubCategoryController::class,'sub_category_edit'])->name('admin.sub-category-edit-form');
         Route::post('sub-category/update/{id}',[SubCategoryController::class,'update_sub_category'])->name('admin.sub-category.update');
         Route::delete('sub-category/delete/{id}',[SubCategoryController::class,'delete_sub_category'])->name('admin.sub-category.delete');
+
+
+        // Brands
+        Route::get('brand',[BrandController::class,'index'])->name('admin.brand');
+        Route::get('brand-form',[BrandController::class,'brand_form'])->name('admin.brand.form');
+        Route::post('brand/create',[BrandController::class,'create_brand'])->name('admin.brand.add');
+        Route::get('brand-edit/{id}',[BrandController::class,'brand_edit'])->name('admin.brand-edit-form');
+        Route::post('brand/update/{id}',[BrandController::class,'update_brand'])->name('admin.brand.update');
+        Route::delete('brand/delete/{id}',[BrandController::class,'delete_brand'])->name('admin.brand.delete');
 
 
         Route::get('getSlug',function(Request $request){
