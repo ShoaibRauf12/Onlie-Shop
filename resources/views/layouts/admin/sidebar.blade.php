@@ -19,6 +19,11 @@
                     <div class="sb-nav-link-icon"><i class="fa-brands fa-font-awesome"></i></div>
                     {{__('Brands')}}
                 </a>
+                <a class="nav-link @yield('product')" href="{{ route('admin.product') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i></div>
+                    {{__('Products')}}
+                </a>
+
             </div>
         </div>
         <div class="sb-sidenav-footer">

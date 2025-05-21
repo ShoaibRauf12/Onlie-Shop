@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TempImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -58,6 +59,15 @@ Route::group(['prefix' => 'admin'],function(){
         Route::post('brand/update/{id}',[BrandController::class,'update_brand'])->name('admin.brand.update');
         Route::delete('brand/delete/{id}',[BrandController::class,'delete_brand'])->name('admin.brand.delete');
 
+        // Products
+        Route::post('product/image-upload',[TempImageController::class,'product_image_upload'])->name('admin.product.image.upload');
+        Route::controller(ProductController::class)->group(function(){
+            Route::get('product','index')->name('admin.product');
+            Route::get('product-form','product_form')->name('admin.product.form');
+            Route::post('product-sub-category','product_sub_category')->name('admin.product.subcategory');
+            Route::post('product/create','create_product')->name('admin.product.add');
+            Route::get('product-edit/{id}','product_edit_form')->name('admin.product-edit-form');
+        });
 
         Route::get('getSlug',function(Request $request){
             $slug = '';
