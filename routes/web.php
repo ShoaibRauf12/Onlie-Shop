@@ -67,6 +67,7 @@ Route::group(['prefix' => 'admin'],function(){
             Route::post('product-sub-category','product_sub_category')->name('admin.product.subcategory');
             Route::post('product/create','create_product')->name('admin.product.add');
             Route::get('product-edit/{id}','product_edit_form')->name('admin.product-edit-form');
+            Route::post('product/update/{id}','update_product')->name('admin.product.update');
         });
 
         Route::get('getSlug',function(Request $request){
