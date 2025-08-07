@@ -194,7 +194,7 @@ class ProductController extends Controller
             $product->status = $request->status;
             $product->save();
 
-            
+
             if (!empty($request->media_id)) {
 
                 $productImages = ProductImage::where('product_id', $product->id)->get();
@@ -205,7 +205,6 @@ class ProductController extends Controller
                     }
                     $productImage = ProductImage::find($img->id);
                     $productImage->delete();
-                  
                 }
 
                 foreach ($request->media_id as $item) {
@@ -236,6 +235,33 @@ class ProductController extends Controller
                 'status' => false,
                 'errors' => $validator->errors(),
             ]);
+        }
+    }
+
+    public function delete_product($id)
+    {
+        $product = Product::findOrFail($id);
+
+        $productImages = ProductImage::where('product_id', $id)->get();
+        foreach ($productImages as $img) {
+            $imagePath = public_path('admin_assets/images/product_images/' . $img->image);
+            if (file_exists($imagePath)) {
+                @unlink($imagePath);
+            }
+        }
+        ProductImage::where('product_id',$id)->delete();
+
+        $result = $product->delete();
+        if ($result) {
+            session()->flash('success', 'deleted Successfully.');
+            return Response::json([
+                'status' =>  true,
+                'message' => 'Deleted Successfully',
+                'redirect_url' => route('admin.product')
+            ]);
+        } else {
+            session()->flash('error', 'record Not Deleted.');
+            return Response::json(['status' => false, 'errors' => 'Record Not deleted.']);
         }
     }
 }

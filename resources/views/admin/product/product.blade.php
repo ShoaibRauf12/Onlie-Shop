@@ -76,7 +76,7 @@
                                     </td>
                                     <td>
                                         <a href="{{route('admin.product-edit-form',$product->id)}}" class="btn btn-info btn-sm">Edit</a>
-                                        <a data-id="{{$product->id}}" class="btn btn-danger btn-sm category-btn-delete">Delete</a>
+                                        <a data-id="{{$product->id}}" class="btn btn-danger btn-sm product-btn-delete">Delete</a>
                                     </td>
                                 </tr>
                                 @php
@@ -108,10 +108,10 @@
 @push('script')
 <script>
     $(document).ready(function(e) {
-        $('.category-btn-delete').click(function() {
+        $('.product-btn-delete').click(function() {
             var id = $(this).data('id');
 
-            var url = "{{ route('admin.category.delete', 'ID') }}";
+            var url = "{{ route('admin.product.delete', 'ID') }}";
             var newUrl = url.replace('ID',id);
             
             if (confirm("Are you sure you want to delete this record.")) {
