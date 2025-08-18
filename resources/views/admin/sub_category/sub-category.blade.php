@@ -54,7 +54,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ ucfirst($category->showHome)}}
+                                            {{ ucfirst($sub_category->showHome)}}
                                          </td>
                                         <td>
                                             <a href="{{ route('admin.sub-category-edit-form',$sub_category->id) }}" class="btn btn-info btn-sm">Edit</a>
