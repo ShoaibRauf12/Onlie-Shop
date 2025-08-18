@@ -12,12 +12,10 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+use App\Http\Controllers\FrontendController;
 
 
+Route::get('/', [FrontendController::class,'index'])->name('frontend.home');
 
 Route::group(['prefix' => 'admin'],function(){
 

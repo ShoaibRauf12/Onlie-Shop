@@ -34,6 +34,7 @@
                                 <th>Name</th>
                                 <th>Slug</th>
                                 <th>Status</th>
+                                <th>Is Active</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -52,6 +53,9 @@
                                             <i class="fa-regular fa-circle-xmark text-danger"></i>
                                             @endif
                                         </td>
+                                        <td>
+                                            {{ ucfirst($category->showHome)}}
+                                         </td>
                                         <td>
                                             <a href="{{ route('admin.sub-category-edit-form',$sub_category->id) }}" class="btn btn-info btn-sm">Edit</a>
                                             <a data-id="{{$sub_category->id}}" class="btn btn-danger btn-sm sub-category-btn-delete">Delete</a>

@@ -33,6 +33,14 @@
                                 <option value="0">Deactive</option>
                             </select>
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="showHome"> Show Home </label>
+                            <select name="showHome" id="showHome" class="form-select">
+                                <option value="">Select showHome</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
                         <!-- Image Upload via Dropzone -->
                         <div class="fom-group mb-3">
                             <label for="image" class="image">Image</label>

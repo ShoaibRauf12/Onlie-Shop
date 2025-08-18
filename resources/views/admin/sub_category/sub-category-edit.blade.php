@@ -48,6 +48,14 @@
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="showHome"> Show Home </label>
+                            <select name="showHome" id="showHome" class="form-select">
+                                <option value="">Select Status</option>
+                                <option value="yes" {{$sub_category->showHome == 'yes' ? 'selected' : "" }}>Yes</option>
+                                <option value="no" {{$sub_category->showHome == 'no' ? 'selected' : "" }}>No</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <div class="form-group">

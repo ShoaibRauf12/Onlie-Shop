@@ -43,6 +43,14 @@
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="showHome"> Show Home </label>
+                            <select name="showHome" id="showHome" class="form-select">
+                                <option value="">Select showHome</option>
+                                <option value="yes" {{$category->showHome == 'yes' ? 'selected' : "" }}>Yes</option>
+                                <option value="no" {{$category->showHome == 'no' ? 'selected' : "" }}>No</option>
+                            </select>
+                        </div>
                         <!-- Image Upload via Dropzone -->
                         <div class="fom-group mb-3">
                             <label for="image" class="image">Image</label>

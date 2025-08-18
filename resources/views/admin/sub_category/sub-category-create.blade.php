@@ -44,7 +44,14 @@
                                 <option value="0">Deactive</option>
                             </select>
                         </div>
-
+                        <div class="form-group mb-3">
+                            <label for="showHome"> Show Home </label>
+                            <select name="showHome" id="showHome" class="form-select">
+                                <option value="">Select Status</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <div class="form-group">

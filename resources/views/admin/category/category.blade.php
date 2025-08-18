@@ -33,6 +33,7 @@
                                 <th>Name</th>
                                 <th>Slug</th>
                                 <th>Status</th>
+                                <th>is Active</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -49,6 +50,9 @@
                                     @else
                                     <i class="fa-regular fa-circle-xmark text-danger"></i>
                                     @endif
+                                </td>
+                                <td>
+                                   {{ ucfirst($category->showHome)}}
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.category-edit-form',$category->id) }}" class="btn btn-info btn-sm">Edit</a>
