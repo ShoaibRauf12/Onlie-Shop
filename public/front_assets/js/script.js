@@ -70,7 +70,7 @@
         slidesPerView: 4,
         spaceBetween: 10,
         pagination: {
-          el: "#mobile-products .swiper-pagination",
+          el: "#featured-products .swiper-pagination",
           clickable: true,
         },
         breakpoints: {

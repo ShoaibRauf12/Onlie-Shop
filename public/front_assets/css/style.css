@@ -693,7 +693,7 @@ h3.cart-title {
 /*----------------------------------------------*/
 .product-store .product-card .cart-concern {
     bottom: 75px;
-    width: 100%;
+    width: 85%;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -1018,4 +1018,7 @@ figure.instagram-item img.insta-image {
 .post-navigation:hover svg,
 .post-navigation:focus svg {
     fill: var(--primary-color);
+}
+.categories-section{
+  height: 80px;
 }

@@ -56,149 +56,78 @@
     </section>
 
     {{-- Categories --}}
-    <section id="company-services" class="padding-large">
+    <section id="categories" class="padding-large">
         <div class="container">
             <div class="row">
-               
+
                 @if (getCategories()->isNotEmpty())
-                    @foreach(getCategories() as $category) 
-                    <div class="col-lg-3 cold-md-6 pb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3 border-end"></div>
-                                    <div class="col-md-9">
-                                        {{ $category->name }}
+                    <h2>{{ Str::upper(__('Categories')) }}</h2>
+                    @foreach (getCategories() as $category)
+                        <div class="col-lg-3 cold-md-6">
+                            <div class="card shadow my-2 bg-body rounded">
+                                <div class="card-body category-body py-2">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @if (!empty($category->image))
+                                                <img class="img-fluid"
+                                                    src="{{ asset('admin_assets/images/category_images/' . $category->image) }}"
+                                                    alt="">
+                                            @endif
+                                        </div>
+                                        <div class="col-md-9">
+                                            <a href="#" class="py-4 w-100 d-block">{{ $category->name }}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
-                    
+
                 @endif
-               
+
             </div>
         </div>
     </section>
 
-
-    <section id="mobile-products" class="product-store position-relative padding-large no-padding-top">
+    {{-- Featured Product --}}
+    <section id="featured-products" class="product-store position-relative padding-large no-padding-top">
         <div class="container">
             <div class="row">
                 <div class="display-header d-flex justify-content-between pb-3">
-                    <h2 class="display-7 text-dark text-uppercase">Mobile Products</h2>
+                    <h2 class="display-7 text-dark text-uppercase">{{ Str::upper(__('Featured Products')) }}</h2>
                     <div class="btn-right">
-                        <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+                        <a href="#" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
                     </div>
                 </div>
                 <div class="swiper product-swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="images/product-item1.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
+                        @if (!empty($featured_products))
+                            @foreach ($featured_products as $f_product)
+                                <div class="swiper-slide">
+                                    <div class="product-card position-relative shadow my-2 bg-body rounded p-4">
+                                        <div class="image-holder" >
+                                            @if($f_product->product_images->isNotEmpty())
+                                            <img src="{{asset('admin_assets/images/product_images/'.$f_product->product_images->last()->image)}}" alt="product-item" class="img-fluid w-100" style="height:300px">
+                                            @endif
+                                        </div>
+                                        <div class="cart-concern position-absolute">
+                                            <div class="cart-button d-flex">
+                                                <a href="#" class="btn btn-black">Add to Cart<svg
+                                                        class="cart-outline">
+                                                        <use xlink:href="#cart-outline"></use>
+                                                    </svg></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                                            <h3 class="card-title text-uppercase">
+                                                <a href="#">{{$f_product->name}}</a>
+                                            </h3>
+                                            <span class="item-price text-primary">{{'$'.$f_product->price}}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 10</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$980</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="images/product-item2.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 11</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$1100</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="images/product-item3.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 8</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$780</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="images/product-item4.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 13</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$1500</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="images/product-item5.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 12</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$1300</span>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
