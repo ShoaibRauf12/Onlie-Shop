@@ -119,10 +119,15 @@
                                             </div>
                                         </div>
                                         <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                            <h3 class="card-title text-uppercase">
+                                            <h3 class="card-title text-uppercase" style="font-size: 14px;font-weight:bold">
                                                 <a href="#">{{$f_product->name}}</a>
                                             </h3>
-                                            <span class="item-price text-primary">{{'$'.$f_product->price}}</span>
+                                            <div class="item-price">
+                                                <span class="item-price text-primary">{{'$'.$f_product->price}}</span>
+                                                <small><span class="item-price text-secondary" style="font-size: 12px;font-weight:bold"> <del>{{'$'.$f_product->compare_price}}</del></span></small>
+                                            </div>
+                                           
+                                            
                                         </div>
                                     </div>
                                 </div>
