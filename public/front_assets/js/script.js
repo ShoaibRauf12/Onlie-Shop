@@ -89,7 +89,7 @@
         slidesPerView: 4,
         spaceBetween: 10,
         pagination: {
-          el: "#smart-watches .swiper-pagination",
+          el: "#latest-products .swiper-pagination",
           clickable: true,
         },
         breakpoints: {
