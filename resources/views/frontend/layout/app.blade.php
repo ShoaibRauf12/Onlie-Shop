@@ -156,12 +156,14 @@
 
     @include('frontend.layout.footer')
 
+   
 
     <script src="{{ asset('front_assets/js/jquery.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="{{ asset('front_assets/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('front_assets/js/plugins.js') }}"></script>
     <script type="text/javascript" src="{{ asset('front_assets/js/script.js') }}"></script>
+    @stack('customJs')
 </body>
 
 </html>

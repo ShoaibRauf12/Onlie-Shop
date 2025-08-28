@@ -705,6 +705,26 @@ h3.cart-title {
     bottom: 90px;
     opacity: 1;
 }
+.product-card .cart-concern {
+  bottom: 75px;
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease-out;
+  opacity: 0;
+}
+.product-card:hover .cart-concern {
+  bottom: 90px;
+  opacity: 1;
+}
+@media(max-width: 767px) {
+  .product-card:hover .cart-concern {
+    bottom: 90px;
+    opacity: 1;
+  }
+}
 .product-card .cart-concern svg {
     width: 16px;
     height: 16px;

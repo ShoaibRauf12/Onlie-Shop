@@ -16,6 +16,7 @@ use App\Http\Controllers\FrontendController;
 
 
 Route::get('/', [FrontendController::class,'index'])->name('frontend.home');
+Route::get('/shop', [FrontendController::class,'shop'])->name('shop');
 
 Route::group(['prefix' => 'admin'],function(){
 
