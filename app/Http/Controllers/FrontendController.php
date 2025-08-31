@@ -30,11 +30,13 @@ class FrontendController extends Controller
             $products = $products->whereIn('category_id',$request->categories);
         }
         $products = $products->paginate(9);
-        
+       
+      
         return view('frontend.shop',[
             'categories' => $categories,
             'brands' => $brands,
-            'products' => $products
+            'products' => $products,
+            
         ]);
     }
 }
